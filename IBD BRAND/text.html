@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBD Streetwear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            color: #fff;
+            background-color: transparent;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px;
+            background-color: rgba(231, 223, 223, 0.801);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #000;
+        }
+
+        .logo-box {
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+            padding: 8px 10px;
+            border-radius: 2px;
+        }
+
+        .logo span {
+            font-size: 12px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Mobile Menu Icon */
+        #navBar {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #555;
+        }
+
+        .icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            text-align: left;
+            padding: 0 40px;
+        }
+
+        .new-collection {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .description-sec {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: whitesmoke;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 26px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn.primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn.primary:hover {
+            background: #eaeaea;
+        }
+
+        .btn.secondary {
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Collection Section */
+        .collection {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        /* Filter Buttons */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filters button {
+            border: none;
+            background: #fff;
+            color: #000;
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .filters button.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .filters button:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* Product Cards */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            justify-items: center;
+        }
+
+        .card {
+            background: #fff;
+            color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .category {
+            color: #888;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .details {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .details:hover {
+            border-color: #000;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #f5f5f5;
+            color: #555;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stats h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        .stats p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Feature Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid .card {
+            border-radius: 10px;
+            padding: 50px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .grid .card.light {
+            background: #f8f9fb;
+            color: #000;
+        }
+
+        .grid .card.dark {
+            background: #000;
+            color: #fff;
+        }
+
+        .grid .card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .grid .card p {
+            font-size: 13px;
+            color: inherit;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 80px;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: #ccc;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-form input {
+            padding: 12px 16px;
+            width: 70%;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .subscribe-form button {
+            padding: 12px 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .subscribe-form button:hover {
+            background: #eaeaea;
+        }
+
+        .privacy-note {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0b1120;
+            padding: 60px 80px 30px;
+            color: #d1d5db;
+            font-size: 14px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: #fff;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .footer .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .footer .logo-box {
+            background-color: #fff;
+            color: #000;
+            font-weight: 700;
+            padding: 6px 12px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .logo-text .small {
+            font-size: 10px;
+            color: #9ca3af;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text .brand-name {
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+
+        .brand-desc {
+            color: #9ca3af;
+            line-height: 1.6;
+            font-size: 13px;
+            max-width: 260px;
+        }
+
+        .connect p {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #d1d5db;
+            margin-right: 14px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #1f2937;
+            margin: 40px 0 20px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            /* Mobile Menu Styles */
+            #navBar {
+                display: block;
+               
+                background: none;
+                border: none;
+                color: #000;
+                padding: 5px;
+                z-index: 1000;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: rgba(231, 223, 223, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: right 0.4s ease-in-out;
+                z-index: 999;
+                padding-top: 80px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                opacity: 0;
+                transform: translateX(50px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-links.active li:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .nav-links.active li:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            .nav-links.active li:nth-child(3) {
+                transition-delay: 0.3s;
+            }
+
+            .nav-links.active li:nth-child(4) {
+                transition-delay: 0.4s;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                color: #000;
+                font-weight: 600;
+            }
+
+            .nav-links a:hover {
+                color: #555;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .card img {
+                height: 300px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .subscribe-form input {
+                width: 100%;
+            }
+
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 15px;
+            }
+
+            .logo span {
+                font-size: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .description-sec {
+                font-size: 14px;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .filters {
+                gap: 10px;
+            }
+
+            .filters button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .card {
+                max-width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-links a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-box">IBD</div>
+            <span>INSPIRED BY <strong>DENNIS</strong></span>
+        </div>
+
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fas fa-bars" id="navBar"></i>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="overlay"></div>
+        <img src="images/WhatsApp Image 2025-11-11 at 10.56.59_e4b3eb60.jpg" alt="Streetwear" class="hero-bg">
+        <div class="hero-content">
+            <p class="new-collection">NEW COLLECTION 2025</p>
+            <h1>Redefining<br>Street Culture</h1>
+            <p class="description-sec">
+                Where contemporary design meets authentic street style.<br>
+                Discover our latest collection inspired by urban life and modern aesthetics.
+            </p>
+            <div class="buttons">
+                <a href="#" class="btn primary">Shop Collection</a>
+                <a href="#" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection">
+        <div class="container">
+            <h2>Latest Collection</h2>
+            <p class="subtitle">
+                Curated pieces for the modern wardrobe. Each item designed with intention and crafted for longevity.
+            </p>
+
+            <div class="filters">
+                <button class="active">All</button>
+                <button>Basics</button>
+                <button>Outerwear</button>
+                <button>Jackets</button>
+                <button>Bottoms</button>
+                <button>Accessories</button>
+            </div>
+
+            <div class="products">
+                <div class="card">
+                    <img src="images/basics.webp" alt="Essential White Tee">
+                    <div class="card-content">
+                        <p class="category">BASICS</p>
+                        <h3>Essential White Tee</h3>
+                        <div class="card-footer">
+                            <span class="price">$45</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/bottom2.webp" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">BOTTOMS</p>
+                        <h3>Vintage Denim Trouser</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/WhatsApp Image 2025-11-11 at 10.56.59_e4b3eb60.jpg" alt="Black Signature Hoodie">
+                    <div class="card-content">
+                        <p class="category">OUTERWEAR</p>
+                        <h3>Black Signature Hoodie</h3>
+                        <div class="card-footer">
+                            <span class="price">$95</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/bottom3.webp" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">BOTTOMS</p>
+                        <h3>Vintage Denim Trousers</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/WhatsApp Image 2025-11-11 at 10.56.59_e4b3eb60.jpg" alt="Black Signature Hoodie">
+                    <div class="card-content">
+                        <p class="category">OUTERWEAR</p>
+                        <h3>Black Signature Hoodie</h3>
+                        <div class="card-footer">
+                            <span class="price">$95</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/basics.webp" alt="Essential White Tee">
+                    <div class="card-content">
+                        <p class="category">BASICS</p>
+                        <h3>Essential White Tee</h3>
+                        <div class="card-footer">
+                            <span class="price">$45</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/WhatsApp Image 2025-11-11 at 10.56.59_e4b3eb60.jpg" alt="Black Signature Hoodie">
+                    <div class="card-content">
+                        <p class="category">OUTERWEAR</p>
+                        <h3>Black Signature Hoodie</h3>
+                        <div class="card-footer">
+                            <span class="price">$95</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/necklace.webp" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">Accessories</p>
+                        <h3>Vintage Denim Necklace</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/jacket1.jpg" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">JACKETS</p>
+                        <h3>Vintage Denim Jacket</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/watch.jpg" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">Accessories</p>
+                        <h3>Vintage Denim Wrist Watch</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/OIP.jpg" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">JACKETS</p>
+                        <h3>Vintage Denim Jacket</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/OIP.jpg" alt="Vintage Denim Jacket">
+                    <div class="card-content">
+                        <p class="category">JACKETS</p>
+                        <h3>Vintage Denim Jacket</h3>
+                        <div class="card-footer">
+                            <span class="price">$125</span>
+                            <a href="#" class="details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div class="about-left">
+                <p class="section-tag">OUR STORY</p>
+                <h2>Inspired by Dennis</h2>
+                <p class="description">
+                    IBD was born from a passion for authentic street culture and contemporary design.
+                    Founded by Dennis, our brand represents more than just clothing—it's a lifestyle
+                    movement that celebrates individuality and self-expression.
+                </p>
+                <p class="description">
+                    Each piece is thoughtfully designed to bridge the gap between classic streetwear
+                    and modern minimalism. We believe in creating timeless pieces that tell a story
+                    and stand the test of time.
+                </p>
+
+                <div class="stats">
+                    <div>
+                        <h3>2020</h3>
+                        <p>Founded</p>
+                    </div>
+                    <div>
+                        <h3>50K+</h3>
+                        <p>Customers</p>
+                    </div>
+                    <div>
+                        <h3>100+</h3>
+                        <p>Products</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-right">
+                <div class="grid">
+                    <div class="card light">
+                        <h4>IBD</h4>
+                        <p>Authentic Design</p>
+                    </div>
+                    <div class="card dark">
+                        <h4>SUSTAINABLE</h4>
+                        <p>Eco-Friendly Materials</p>
+                    </div>
+                    <div class="card dark">
+                        <h4>QUALITY CRAFTED</h4>
+                        <p>Every Detail Matters</p>
+                    </div>
+                    <div class="card light">
+                        <h4>STREETWEAR</h4>
+                        <p>Redefined</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Stay in the Loop</h2>
+            <p>
+                Subscribe to our newsletter for exclusive drops, early access to new collections, and special offers.
+            </p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe →</button>
+            </form>
+            <p class="privacy-note">
+                We respect your privacy. Unsubscribe at any time.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section brand">
+                <div class="logo">
+                    <div class="logo-box">IBD</div>
+                    <div class="logo-text">
+                        <p class="small">INSPIRED BY</p>
+                        <p class="brand-name">DENNIS</p>
+                    </div>
+                </div>
+                <p class="brand-desc">Redefining street culture through contemporary design and authentic style.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>SHOP</h4>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Basics</a></li>
+                    <li><a href="#">Outerwear</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section connect">
+                <h4>CONNECT</h4>
+                <p>Follow us on social media for the latest updates and style inspiration.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="footer-bottom">
+            <p>© 2025 Inspired by Dennis. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const navBar = document.getElementById('navBar');
+        const navLinks = document.getElementById('navLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        // Toggle menu function
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+
+            // Change icon from bars to X
+            if (navBar.classList.contains('fa-bars')) {
+                navBar.classList.remove('fa-bars');
+                navBar.classList.add('fa-times');
+            } else {
+                navBar.classList.remove('fa-times');
+                navBar.classList.add('fa-bars');
+            }
+        }
+
+        // Add event listener to menu toggle button
+        navBar.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking overlay
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', toggleMenu);
+        });
+
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // PRODUCT FILTER FUNCTIONALITY
+        const filterButtons = document.querySelectorAll(".filters button");
+        const productCards = document.querySelectorAll(".products .card");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                // Add active class to clicked button
+                button.classList.add("active");
+
+                // Get filter category
+                const category = button.textContent.trim().toUpperCase();
+
+                // Loop through products and show/hide based on filter
+                productCards.forEach(card => {
+                    const cardCategory = card.querySelector(".category").textContent.trim().toUpperCase();
+
+                    // Show all products if "ALL" is selected
+                    if (category === "ALL") {
+                        card.style.display = "block";
+                    } else {
+                        // Show only matching category
+                        if (cardCategory === category) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
